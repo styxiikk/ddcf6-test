@@ -24,7 +24,7 @@ fi && \
    
 rm -f /root/result.csv && \
 /root/CloudflareST -tl 200 -tll 2 -sl 5 -p 1 -f /root/ipv6.txt >/dev/null 2>&1 && \
-target_ip=`grep -s -Po '[\w:]+:+[\w:]+'" /root/result.csv| head -n 1` && \
+target_ip=`grep -s -Po '[\w:]+:+[\w:]+' /root/result.csv| head -n 1` && \
 if [ ! -n "$target_ip" ]; then
    echo "fail to found a target ip"
    exit
