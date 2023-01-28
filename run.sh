@@ -11,7 +11,7 @@ echo "Now ip of ${DOMAIN} is ---${NOW_IP}---" && \
 echo ${NOW_IP} > /root/nowIp.txt && \
 # check now ip useable
 rm -f /root/nowIp.csv && \
-/root/CloudflareST -tl 200 -tll 2 -sl 5 -p 1 -f /root/nowIp.txt -o "/root/nowIp.csv" >/dev/null 2>&1 && \
+/root/CloudflareST -dn 10 -tl 300 -tll 2 -sl 5 -p 1 -f /root/nowIp.txt -o "/root/nowIp.csv" >/dev/null 2>&1 && \
 test_ip=`grep -s -Po '[\w:]+:+[\w:]+' /root/nowIp.csv| head -n 1` && \
 if [ ! -f "/root/nowIp.csv" ]; then
    test_speed=0.00
