@@ -11,11 +11,8 @@ RUN apk add --no-cache wget jq grep curl tar gzip bind-tools tzdata \
  && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
  && touch run.log && chmod 777 run.log \
  && touch nowIp.txt && chmod 777 nowIp.txt \
- && arch \
- && newarch=$(arch | sed s/aarch64/arm64/ | sed s/armv8/arm64/ | sed s/ia32/386/ | sed s/x86_64/amd64/) \
- && echo $newarch \
  && latest=$(curl -sSL "https://api.github.com/repos/XIU2/CloudflareSpeedTest/releases/latest" | grep "tag_name" | head -n 1 | cut -d : -f2 | sed 's/[ \"v,]//g') \
- && wget -O CloudflareST.tar.gz https://github.com/XIU2/CloudflareSpeedTest/releases/download/v$latest/CloudflareST_linux_$newarch.tar.gz \
+ && wget -O CloudflareST.tar.gz https://github.com/XIU2/CloudflareSpeedTest/releases/download/v$latest/CloudflareST_linux_386.tar.gz \
  && gzip -d CloudflareST*.tar.gz && tar -vxf CloudflareST*.tar && rm CloudflareST*.tar \
  && chmod +x CloudflareST run.sh startup.sh
 
