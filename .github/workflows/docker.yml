@@ -61,7 +61,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          platforms: linux/386,linux/amd64,linux/arm,linux/arm64
+          platforms: linux/386,linux/amd64,linux/arm64
           push: false
           tags: ghcr.io/styxiik/ddcf:latest
           labels: ${{ steps.meta.outputs.labels }}
@@ -75,7 +75,7 @@ jobs:
           name: styxiik/ddcf6
           username: styxiik
           password: ${{ secrets.DOCKER_TOKEN }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/386,linux/amd64,linux/arm64
           
 #       - name: delete-untagged-action
 #         uses: camargo/delete-untagged-action@v1
