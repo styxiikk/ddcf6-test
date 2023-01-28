@@ -13,7 +13,12 @@ echo ${NOW_IP} > /root/nowIp.txt && \
 rm -f /root/nowIp.csv && \
 /root/CloudflareST -tl 200 -tll 2 -sl 5 -p 1 -f /root/nowIp.txt -o "/root/nowIp.csv" >/dev/null 2>&1 && \
 test_ip=`grep -s -Po '[\w:]+:+[\w:]+' /root/nowIp.csv| head -n 1` && \
-test_speed=`awk -F, 'NR==2{print $6}' /root/nowIp.csv` && \
+if [ ! -f "/root/nowIp.csv" ]; then
+   test_speed=0.00
+else
+   test_speed=`awk -F, 'NR==2{print $6}' /root/nowIp.csv`
+fi && \
+
 if [ ! -n "$test_ip" ] || [ `echo "$test_speed < 5.00" | bc` -eq 1 ]; then
    echo "now ip unavailable, continue"
 else
